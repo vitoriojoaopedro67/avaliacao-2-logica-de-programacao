@@ -94,3 +94,12 @@ def ordenar_livros(lista_livros, campo):
 
     return sorted(lista_livros, key=lambda livro: livro[campo])
 
+def salvar_livros(lista_livros):
+# Salva a lista de livros no CSV, sobrescrevendo o que tinha antes.
+    
+    with open(ARQUIVO_CSV, mode="w", newline="", encoding="utf-8") as arquivo:
+        escritor = csv.DictWriter(arquivo, fieldnames=CAMPOS)
+        escritor.writeheader()
+        for livro in lista_livros:
+            escritor.writerow(livro)
+            
