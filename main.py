@@ -74,3 +74,14 @@ def emprestar_livro(lista_livros, isbn):
 
     return "Livro não encontrado."  
 
+def devolver_livro(lista_livros, isbn):
+# Procura o livro pelo ISBN e, se estiver emprestado, marca como "disponível" de volta. Devolve uma mensagem contando o que aconteceu.
+    
+    for livro in lista_livros:
+        if livro["isbn"] == isbn:
+            if livro["status"] == "disponivel":
+                return "Este livro já está disponível."
+            livro["status"] = "disponivel"
+            return "Devolução registrada com sucesso."
+
+    return "Livro não encontrado."
