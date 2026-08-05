@@ -62,4 +62,15 @@ def buscar_livros(lista_livros, termo, campo):
 
     return resultado
         
-        
+def emprestar_livro(lista_livros, isbn):
+# Procura o livro pelo ISBN e, se estiver disponível, marca como "emprestado". Devolve uma mensagem contando o que aconteceu.
+    
+    for livro in lista_livros:
+        if livro["isbn"] == isbn:
+            if livro["status"] == "emprestado":
+                return "Este livro já está emprestado."
+            livro["status"] = "emprestado"
+            return "Empréstimo registrado com sucesso."
+
+    return "Livro não encontrado."  
+
