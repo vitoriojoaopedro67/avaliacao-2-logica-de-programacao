@@ -102,4 +102,69 @@ def salvar_livros(lista_livros):
         escritor.writeheader()
         for livro in lista_livros:
             escritor.writerow(livro)
-            
+     
+def exibir_menu():
+#Imprime as opções do menu principal.
+
+    print("\n===== SISTEMA DE GERENCIAMENTO DE BIBLIOTECA =====")
+    print("1. Cadastrar livro")
+    print("2. Listar todos os livros")
+    print("3. Buscar algum livro")
+    print("4. Ordenar alguns livros")
+    print("5. Emprestar algum livro")
+    print("6. Devolver algum livro")
+    print("0. Sair")
+    print("===================================================")
+
+
+def main():
+# Tem como função manter o menu rodando até o usuário decidir sair.
+
+    while True:
+        exibir_menu()
+        opcao = input("Escolha uma opção: ").strip()
+
+        if opcao == "1":
+            titulo = input("Título: ").strip()
+            autor = input("Autor: ").strip()
+            ano = input("Ano: ").strip()
+            isbn = input("ISBN: ").strip()
+            cadastrar_livro(livros, titulo, autor, ano, isbn)
+            salvar_livros(livros)
+            print("Parabéns! Livro cadastrado com sucesso!")
+
+        elif opcao == "2":
+            listar_livros(livros)
+
+        elif opcao == "3":
+            campo = input("Buscar por (titulo/autor): ").strip().lower()
+            termo = input("Digite o termo de busca: ").strip()
+            encontrados = buscar_livros(livros, termo, campo)
+            listar_livros(encontrados)
+
+        elif opcao == "4":
+            campo = input("Ordenar por (titulo/autor/ano): ").strip().lower()
+            ordenados = ordenar_livros(livros, campo)
+            listar_livros(ordenados)
+
+        elif opcao == "5":
+            isbn = input("ISBN do livro a emprestar: ").strip()
+            mensagem = emprestar_livro(livros, isbn)
+            salvar_livros(livros)
+            print(mensagem)
+
+        elif opcao == "6":
+            isbn = input("ISBN do livro a devolver: ").strip()
+            mensagem = devolver_livro(livros, isbn)
+            salvar_livros(livros)
+            print(mensagem)
+
+        elif opcao == "0":
+            print("Encerrando o sistema. Obrigado por utilizar! Até logo!")
+            break
+
+        else:
+            print("Opção inválida. Tente novamente!")
+
+
+main()       
