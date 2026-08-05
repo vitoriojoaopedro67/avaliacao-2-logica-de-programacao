@@ -19,3 +19,18 @@ def carregar_livros():
             lista_livros.append(linha)
 
     return lista_livros
+
+livros = carregar_livros()
+
+def cadastrar_livro(lista_livros, titulo, autor, ano, isbn):
+# Monta um dicionário com os dados do livro e adiciona à lista. Devolve a lista já atualizada.
+    
+    novo_livro = {
+        "titulo": titulo,
+        "autor": autor,
+        "ano": ano,
+        "isbn": isbn,
+        "status": "disponivel"
+    }
+    lista_livros.append(novo_livro)
+    return lista_livros
