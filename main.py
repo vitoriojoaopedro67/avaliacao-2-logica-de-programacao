@@ -50,4 +50,16 @@ def listar_livros(lista_livros):
         print(f"Status: {livro['status']}")
         print("--------------------------------\n")
         
+def buscar_livros(lista_livros, termo, campo):
+# Busca na lista os livros que título ou autor bate com o termo digitado. Se não achar nada, devolve lista vazia mesmo
+    
+    termo = termo.lower()
+    resultado = []
+
+    for livro in lista_livros:
+        if termo in livro[campo].lower():
+            resultado.append(livro)
+
+    return resultado
+        
         
