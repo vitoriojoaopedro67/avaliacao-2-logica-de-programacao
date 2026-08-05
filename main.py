@@ -34,3 +34,20 @@ def cadastrar_livro(lista_livros, titulo, autor, ano, isbn):
     }
     lista_livros.append(novo_livro)
     return lista_livros
+
+def listar_livros(lista_livros):
+# Mostra os livros da lista no terminal, formatado. Se não tiver nenhum, avisa o usuário.
+    
+    if not lista_livros:
+        print("Nenhum livro cadastrado.\n")
+        return
+
+    for livro in lista_livros:
+        print(f"Título: {livro['titulo']}")
+        print(f"Autor : {livro['autor']}")
+        print(f"Ano   : {livro['ano']}")
+        print(f"ISBN  : {livro['isbn']}")
+        print(f"Status: {livro['status']}")
+        print("--------------------------------\n")
+        
+        
