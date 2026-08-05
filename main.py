@@ -85,3 +85,12 @@ def devolver_livro(lista_livros, isbn):
             return "Devolução registrada com sucesso."
 
     return "Livro não encontrado."
+
+def ordenar_livros(lista_livros, campo):
+# Ordena os livros pelo campo escolhido (titulo, autor ou ano) e devolve uma lista nova, sem mexer na original.
+    
+    if campo not in ("titulo", "autor", "ano"):
+        return lista_livros
+
+    return sorted(lista_livros, key=lambda livro: livro[campo])
+
