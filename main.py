@@ -1,4 +1,4 @@
-import csv 
+import csv
 import os
 
 ARQUIVO_CSV = "livros.csv"
@@ -9,6 +9,8 @@ CAMPOS = ["titulo", "autor", "ano", "isbn", "status"]
 
 def carregar_livros():
 # Lê o CSV com os livros. Se o arquivo ainda não existe, começamos com uma lista vazia mesmo.
+
+    lista_livros = []
 
     if not os.path.exists(ARQUIVO_CSV):
         return lista_livros
