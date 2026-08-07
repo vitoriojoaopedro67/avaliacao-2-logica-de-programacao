@@ -67,8 +67,11 @@ def listar_livros(lista_livros):
 # ---------- Busca dos Livros ----------
 
 def buscar_livros(lista_livros, termo, campo):
-# Busca na lista os livros que título ou autor bate com o termo digitado. Se não achar nada, devolve lista vazia mesmo
+# Busca na lista os livros que título ou autor bate com o termo digitado. Se não achar nada, devolve lista vazia mesmo.
     
+    if campo not in ("titulo", "autor"):
+        return []
+
     termo = termo.lower()
     resultado = []
 
@@ -114,6 +117,9 @@ def ordenar_livros(lista_livros, campo):
     if campo not in ("titulo", "autor", "ano"):
         return lista_livros
 
+    if campo == "ano":
+        return sorted(lista_livros, key=lambda livro: int(livro[campo]))
+
     return sorted(lista_livros, key=lambda livro: livro[campo])
 
 
@@ -157,6 +163,11 @@ def main():
             autor = input("Autor: ").strip()
             ano = input("Ano: ").strip()
             isbn = input("ISBN: ").strip()
+
+            if not titulo or not autor:
+                print("Título e autor não podem ficar em branco!")
+                continue
+
             cadastrar_livro(livros, titulo, autor, ano, isbn)
             salvar_livros(livros)
             print("Parabéns! Livro cadastrado com sucesso!")
