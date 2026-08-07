@@ -166,6 +166,16 @@ def main():
 
             if not titulo or not autor:
                 print("Título e autor não podem ficar em branco!")
+                print("Por favor, tente novamente.")
+                continue
+
+            if not ano.isdigit():
+                print("Ano precisa ser um número!")
+                print("Por favor, tente novamente.")
+                continue
+            if len(ano) != 4:
+                print("Ano deve ter 4 dígitos!")
+                print("Por favor, tente novamente.")
                 continue
 
             cadastrar_livro(livros, titulo, autor, ano, isbn)
