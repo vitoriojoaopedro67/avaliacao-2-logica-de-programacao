@@ -140,7 +140,7 @@ def salvar_livros(lista_livros):
 def exibir_menu():
 #Imprime as opções do menu principal.
 
-    print("\n===== SISTEMA DE GERENCIAMENTO DE BIBLIOTECA =====")
+    print("\n===== SISTEMA DE GERENCIAMENTO DE BIBLIOTECA ======")
     print("1. Cadastrar livro")
     print("2. Listar todos os livros")
     print("3. Buscar algum livro")
@@ -154,9 +154,10 @@ def exibir_menu():
 def main():
 # Tem como função manter o menu rodando até o usuário decidir sair.
 
+    print("\nBem-vindo ao Sistema de Gerenciamento de Biblioteca!")
     while True:
         exibir_menu()
-        opcao = input("Escolha uma opção: ").strip()
+        opcao = input("\nEscolha uma opção: ").strip()
 
         if opcao == "1":
             titulo = input("Título: ").strip()
@@ -178,9 +179,20 @@ def main():
                 print("Por favor, tente novamente.")
                 continue
 
-            cadastrar_livro(livros, titulo, autor, ano, isbn)
-            salvar_livros(livros)
-            print("Parabéns! Livro cadastrado com sucesso!")
+            if not isbn:
+                print("ISBN não pode ficar em branco!")
+                print("Por favor, tente novamente.")
+                continue
+            
+            print (f"\nConfirme os dados: Título: {titulo}, Autor: {autor}, Ano: {ano}, ISBN: {isbn}")
+            confirmacao = input("Cadastrar esse livro? (s/n): ").strip().lower()
+            if confirmacao == "s":
+                cadastrar_livro(livros, titulo, autor, ano, isbn)
+                salvar_livros(livros)
+                print("Parabéns! Livro cadastrado com sucesso!")
+            else:
+                print("Cadastro cancelado.")
+                continue
 
         elif opcao == "2":
             listar_livros(livros)
@@ -198,17 +210,37 @@ def main():
 
         elif opcao == "5":
             isbn = input("ISBN do livro a emprestar: ").strip()
+            if not isbn:
+                print("ISBN não pode ficar em branco!")
+                print("Por favor, tente novamente.")
+                continue
+            if not isbn.isdigit():
+                print("ISBN precisa ser um número!")
+                print("Por favor, tente novamente.")
+                continue
             mensagem = emprestar_livro(livros, isbn)
             salvar_livros(livros)
             print(mensagem)
 
         elif opcao == "6":
             isbn = input("ISBN do livro a devolver: ").strip()
+            if not isbn:
+                print("ISBN não pode ficar em branco!")
+                print("Por favor, tente novamente.")
+                continue
+            if not isbn.isdigit():
+                print("ISBN precisa ser um número!")
+                print("Por favor, tente novamente.")
+                continue
             mensagem = devolver_livro(livros, isbn)
             salvar_livros(livros)
             print(mensagem)
 
         elif opcao == "0":
+            confirmacao = input("Tem certeza que deseja sair? (s/n): ").strip().lower()
+            if confirmacao != "s":
+                print("Retornando ao menu principal.")
+                continue
             print("Encerrando o sistema. Obrigado por utilizar! Até logo!")
             print("Programa feito por João Pedro Costa Vitório")
             break
