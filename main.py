@@ -62,6 +62,8 @@ def listar_livros(lista_livros):
         print(f"ISBN  : {livro['isbn']}")
         print(f"Status: {livro['status']}")
         print("--------------------------------\n")
+        
+    print(f"Total de livros: {len(lista_livros)}\n")
  
 
 # ---------- Busca dos Livros ----------
@@ -201,7 +203,11 @@ def main():
             campo = input("Buscar por (titulo/autor): ").strip().lower()
             termo = input("Digite o termo de busca: ").strip()
             encontrados = buscar_livros(livros, termo, campo)
-            listar_livros(encontrados)
+            if not encontrados:
+                print("\nNenhum livro encontrado com esse termo!")
+            else:
+                print(f"\nLivros encontrados ({len(encontrados)}):")
+                listar_livros(encontrados)
 
         elif opcao == "4":
             campo = input("Ordenar por (titulo/autor/ano): ").strip().lower()
